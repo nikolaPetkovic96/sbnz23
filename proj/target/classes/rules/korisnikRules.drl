@@ -1,0 +1,36 @@
+package rules;
+import com.proj.*;
+import model.*;
+import model.kategorije.*;
+
+rule "odredi starosnu dob korisnika- dete"
+when
+    Korisnik(datumRodj.Year > 2005, $kategorije:kategorije)
+    $kat:KorKategorije(this==$kategorije)
+
+then
+    modify($kat){setStarost(StarostKat.DETE);};
+    System.out.println("starost izmenjena- dete");
+end
+
+
+rule "odredi starosnu dob korisnika- odrstao"
+when
+    $kor:Korisnik(datumRodj.Year < 2006 , datumRodj.Year>1959)
+
+then
+    System.out.println("starost izmenjena- odrastao");
+    modify($kor){getKategorije().setStarost(StarostKat.ODRASTAO)}
+end
+
+
+rule "odredi starosnu dob korisnika- penzioner"
+when
+    Korisnik(datumRodj.Year<1960, $kategorije:kategorije)
+    $kat:KorKategorije(this==$kategorije)
+
+then
+    $kat.setStarost(StarostKat.PENZIONER);
+    System.out.println("starost izmenjena- penzioner");
+end
+
