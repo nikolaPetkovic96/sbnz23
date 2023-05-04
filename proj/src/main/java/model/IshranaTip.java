@@ -1,15 +1,12 @@
 package model;
 
-public enum UkusTip {
+public enum IshranaTip {
 	NONE(0),
-	LJUTO(1),
-	SLATKO(2),
-	KISELO(3),
-	GORKO(4);
-	
-	
+	VEGETERIJANAC(1),
+	VEGAN(2)
+	;
 	private final int tip;
-    private UkusTip(int tip){
+    private IshranaTip(int tip){
         this.tip = tip;
     }
     public int getTip(){

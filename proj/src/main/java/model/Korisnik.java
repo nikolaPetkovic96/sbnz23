@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 @Document
 public class Korisnik extends User{
 	
-	@Id private long id;
+	@Id private String id;
 	private String ime;
 	private String prezime;
 	private Date datumRodj;
@@ -61,10 +61,10 @@ public class Korisnik extends User{
 		this.porudzbina = porudzbina;
 		this.kategorije = kategorije;
 	}
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
   

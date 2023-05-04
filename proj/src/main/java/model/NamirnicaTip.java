@@ -5,7 +5,11 @@ public enum NamirnicaTip {
 	POVRCE(1),
 	MESO(2),
 	MLECNI_PROIZ(3),
-	TESTENINA(4);
+	TESTENINA(4),
+	VOCE_KOSTUNJAVO(5),
+	RIBA(6),
+	MORSKI_PLODOVI(7)
+	;
 	
 	private final int tip;
     private NamirnicaTip(int tip){

@@ -1,0 +1,15 @@
+package rules;
+import com.proj.*;
+import model.*;
+import model.kategorije.*;
+import com.proj.repository.*
+
+rule "provera postojecih imena"
+when
+    $pRep: ProizvodRep()
+    $novi: Proizvod($naziv:naziv)
+    $istoIme:Proizvod(naziv == $naziv) from collect(Proizvod() from $pRep.findAllByNaziv())
+then
+    $novi.setNaziv("");
+    System.out.println("Posotji obrok sa unetim imenom");
+end

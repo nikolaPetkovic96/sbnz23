@@ -15,15 +15,20 @@ import org.springframework.context.annotation.Configuration;
 //https://medium.com/codex/spring-boot-with-drools-engine-7119774c559f
 public class KieConf {
     private static final String drlFile = "rules/korisnikRules.drl";
-    
+    private static final String drlFileRest = "rules/restoranRules.drl";
+
     @Bean
     public KieContainer kieContainer() { 
         final KieServices kieServices = KieServices.Factory.get();
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
+        
         kieFileSystem.write(ResourceFactory.newClassPathResource(drlFile));
+        //kieFileSystem.write(ResourceFactory.newClassPathResource(drlFileRest));
+
         KieBuilder kb = kieServices.newKieBuilder(kieFileSystem);
         kb.buildAll();
         KieModule kieModule = kb.getKieModule();
         return kieServices.newKieContainer(kieModule.getReleaseId());
     }
+    
 }
